@@ -4,17 +4,20 @@
   "description": "API REST de partidos de futbol",
   "main": "app.js",
   "scripts": {
-    "start": "node --env-file=.env app.js",
-    "dev": "node --watch --env-file=.env app.js",
-    "test": "jest --detectOpenHandles"
+    "start": "node app.js",
+    "dev": "nodemon app.js",
+    "seed": "node scripts/importarPartidos.js",
+    "test": "jest"
   },
   "dependencies": {
-    "express": "^4.19.2",
-    "mongoose": "^8.4.1"
+    "dotenv": "^17.4.2",
+    "express": "^4.22.2",
+    "mongoose": "^8.24.1"
   },
   "devDependencies": {
     "jest": "^29.7.0",
     "mongodb-memory-server": "^10.0.0",
+    "nodemon": "^3.1.14",
     "supertest": "^7.0.0"
   }
 }
