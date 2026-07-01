@@ -50,4 +50,4 @@ const partidoSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model('Partido', partidoSchema);
+module.exports = mongoose.model('Partido', partidoSchema); 
