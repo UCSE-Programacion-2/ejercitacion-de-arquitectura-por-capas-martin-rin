@@ -1,0 +1,32 @@
+const express = require('express');
+
+const {
+  obtenerPartidos,
+  obtenerPartidoPorId,
+  crearPartido,
+  actualizarPartido,
+  eliminarPartido,
+  obtenerPartidosPorTorneo,
+  obtenerPartidosPorEquipo,
+  obtenerPartidosPorFecha,
+} = require('../controllers/partidoController');
+
+const router = express.Router();
+
+router.get('/', obtenerPartidos);
+
+router.get('/torneo/:torneo', obtenerPartidosPorTorneo);
+
+router.get('/equipo/:equipo', obtenerPartidosPorEquipo);
+
+router.get('/fecha/:rango', obtenerPartidosPorFecha);
+
+router.get('/:id', obtenerPartidoPorId);
+
+router.post('/', crearPartido);
+
+router.put('/:id', actualizarPartido);
+
+router.delete('/:id', eliminarPartido);
+
+module.exports = router;

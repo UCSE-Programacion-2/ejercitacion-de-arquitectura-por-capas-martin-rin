@@ -1,20 +1,33 @@
+require('dotenv').config();
+
 const express = require('express');
+const conectarDB = require('./config/db');
+const partidoRoutes = require('./routes/partidoRoutes');
+
 const app = express();
 
 app.use(express.json());
 
-// TODO: Configurar la conexión a la base de datos (MongoDB)
+conectarDB();
 
-// TODO: Importar y usar las rutas de partidos
+app.get('/', (req, res) => {
+  res.send('API REST de Partidos de Fútbol Internacionales');
+});
+
+app.use('/partidos', partidoRoutes);
+
+app.use((req, res) => {
+  res.status(404).json({
+    mensaje: 'Ruta no encontrada',
+  });
+});
 
 const PORT = process.env.PORT || 3000;
 
-// Exportamos 'app' para poder hacer testing
-module.exports = { app };
-
-// Iniciar el servidor solo si este archivo se ejecuta directamente
 if (require.main === module) {
   app.listen(PORT, () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`Servidor escuchando en http://localhost:${PORT}`);
   });
 }
+
+module.exports = app;
